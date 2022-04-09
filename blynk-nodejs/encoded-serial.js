@@ -1,5 +1,5 @@
-const serial = require('serialport');
-const arduino = new serial('/dev/ttyAMA0', { baudRate: 115200 });
+const { SerialPort } = require('serialport')
+const arduino = new SerialPort({path:'/dev/ttyAMA0', baudRate: 115200});
 
 const startMarker = 254
 const endMarker = 255

@@ -1,6 +1,7 @@
 const BlynkLib = require("blynk-library");
-const AUTH_TOKEN = "s_zoFikV95eIztoQG0Kkq0AceUfULxbs";
-const IP_ADDR = blynk-cloud.com;
+const AUTH_TOKEN = "iAZIwDWw6prf-kInPAP3xOSqe58Wzjwk";
+// const IP_ADDR = blynk-cloud.com;
+const IP_ADDR = "localhost";
 const PORT = 8442;
 
 const arduino = require("./encoded-serial");
@@ -10,8 +11,8 @@ const params = { kp: 0, ki: 1, kd: 2, power: 3 };
 
 function connectBlynk() {
   return new BlynkLib.Blynk(
-    AUTH_TOKEN,
     (options = {
+    AUTH_TOKEN,
       connector: new BlynkLib.TcpClient(
         (options = { addr: IP_ADDR, port: PORT })
       )

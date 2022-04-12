@@ -2,7 +2,7 @@ var Blynk = require('blynk-library');
 const arduino = require("./encoded-serial");
 const f2b = require("./float-to-bytes");
 
-var AUTH = "iAZIwDWw6prf-kInPAP3xOSqe58Wzjwk";
+var AUTH = "AUTH-TOKEN";
 const IP_ADDR = "blynk-cloud.com";
 const PORT = 8442;
 

@@ -1,23 +1,21 @@
-const BlynkLib = require("blynk-library");
-const AUTH_TOKEN = "iAZIwDWw6prf-kInPAP3xOSqe58Wzjwk";
-// const IP_ADDR = blynk-cloud.com;
-const IP_ADDR = "localhost";
-const PORT = 8442;
-
+var Blynk = require('blynk-library');
 const arduino = require("./encoded-serial");
 const f2b = require("./float-to-bytes");
+
+var AUTH = "iAZIwDWw6prf-kInPAP3xOSqe58Wzjwk";
+const IP_ADDR = "blynk-cloud.com";
+const PORT = 8442;
 
 const params = { kp: 0, ki: 1, kd: 2, power: 3 };
 
 function connectBlynk() {
-  return new BlynkLib.Blynk(
-    (options = {
-    AUTH_TOKEN,
-      connector: new BlynkLib.TcpClient(
-        (options = { addr: IP_ADDR, port: PORT })
-      )
-    })
-  ).on("error", function() {
+  return new Blynk.Blynk(AUTH, options = {
+    connector : new Blynk.TcpClient(
+      options = {
+        port: PORT,
+        addr: IP_ADDR,
+      }),
+  }).on("error", function() {
     console.log("Unable to connect to Blynk server..Retrying in 20s..");
     var now = new Date().getTime();
     while (new Date().getTime() < now + 20000) {
@@ -25,6 +23,7 @@ function connectBlynk() {
     }
   });
 }
+
 const blynk = connectBlynk();
 
 blynk.on("connect", function() {
@@ -60,6 +59,7 @@ virt_pins[params.kd].on("write", function(param) {
 
 virt_pins[params.power].on("write", function(param) {
   values[params.power] = parseInt(param[0]);
+  console.log('power:', param[0]);
 });
 
 function printValues() {
@@ -78,7 +78,5 @@ arduino.port.on("data", function(data) {
     toSend = toSend.concat(f2b.toFloat32(values[params.ki]));
     toSend = toSend.concat(f2b.toFloat32(values[params.kd]));
     arduino.sendToArduino(toSend);
-    // console.log(toSend);
   }
 });
-// setInterval(printValues, 100);

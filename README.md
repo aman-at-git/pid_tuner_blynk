@@ -25,13 +25,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 node index.js
 
-7. Output should look like:-
-
-    ___  __          __
-   / _ )/ /_ _____  / /__
-  / _  / / // / _ \/  '_/
- /____/_/\_, /_//_/_/\_\
-        /___/
+7. Output should look like:-                                                                                                                               
 
   Give Blynk a Github star! => https://github.com/vshymanskyy/blynk-library-js
 
